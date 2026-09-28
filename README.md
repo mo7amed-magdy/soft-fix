@@ -20,8 +20,8 @@ npm run preview  # serve the production build
 src/
   components/
     brand/       Logo (wordmark + icon, traced from the brand guideline), BrandShape (3D pieces)
-    layout/      Navbar (top nav + floating pill nav + mobile menu), Footer
-    ui/          FadeIn, Magnet, AnimatedText, Buttons, ProjectImage
+    layout/      Navbar (fixed glass pill + mobile menu), Footer
+    ui/          FadeIn, Magnet, AnimatedText, Buttons, ProjectImage, Lightbox
   sections/      Hero, Marquee, About, Services, Projects, CaseStudy, WhyUs, Process, Contact
   data/          site.ts, services.ts, projects.ts, process.ts  ← edit content here
   lib/scroll.ts  Lenis smooth scroll + anchor helpers

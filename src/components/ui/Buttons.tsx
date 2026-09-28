@@ -46,7 +46,10 @@ function Base({
       <a
         href={href}
         className={className}
-        onClick={href.startsWith('#') ? handleAnchor : onClick}
+        onClick={(e) => {
+          onClick?.(e);
+          if (!e.defaultPrevented && href.startsWith('#')) handleAnchor(e);
+        }}
         {...(external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
         {...rest}
       >

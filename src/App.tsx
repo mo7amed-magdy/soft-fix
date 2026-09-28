@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { MotionConfig } from 'framer-motion';
-import { FloatingNav } from '@/components/layout/Navbar';
+import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { LightboxProvider } from '@/components/ui/Lightbox';
 import { About } from '@/sections/About';
 import { CaseStudy } from '@/sections/CaseStudy';
 import { Contact } from '@/sections/Contact';
@@ -19,29 +20,31 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <a
-        href="#main"
-        className="sr-only z-[100] rounded-full bg-white px-5 py-3 font-medium text-canvas focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
-      >
-        Skip to content
-      </a>
-      <FloatingNav />
-      <div className="bg-canvas" style={{ overflowX: 'clip' }}>
-        <Hero />
-        <main id="main">
-          <Marquee />
-          <About />
-          <Services />
-          <Projects />
-          {PROJECTS.map((project, i) =>
-            project.caseStudy ? <CaseStudy key={project.slug} project={project} index={i} /> : null,
-          )}
-          <WhyUs />
-          <Process />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <LightboxProvider>
+        <a
+          href="#main"
+          className="sr-only z-[100] rounded-full bg-white px-5 py-3 font-medium text-canvas focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
+        <Navbar />
+        <div className="bg-canvas" style={{ overflowX: 'clip' }}>
+          <Hero />
+          <main id="main">
+            <Marquee />
+            <About />
+            <Services />
+            <Projects />
+            {PROJECTS.map((project, i) =>
+              project.caseStudy ? <CaseStudy key={project.slug} project={project} index={i} /> : null,
+            )}
+            <WhyUs />
+            <Process />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </LightboxProvider>
     </MotionConfig>
   );
 }

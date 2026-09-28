@@ -7,7 +7,8 @@ import { ProjectImage } from '@/components/ui/ProjectImage';
 import { PROJECTS, type Project } from '@/data/projects';
 
 const numberStyle = { fontSize: 'clamp(3rem, 10vw, 140px)' };
-const radius = 'rounded-[40px] sm:rounded-[50px] md:rounded-[60px]';
+const radius = 'rounded-[32px] sm:rounded-[50px] md:rounded-[60px]';
+const imageRadius = 'rounded-[20px] sm:rounded-[32px] md:rounded-[40px]';
 
 export function Projects() {
   const container = useRef<HTMLDivElement>(null);
@@ -31,7 +32,10 @@ export function Projects() {
         </h2>
       </FadeIn>
 
-      <div ref={container} className="mx-auto max-w-7xl [--stick:6rem] md:[--stick:8rem]">
+      <div
+        ref={container}
+        className="mx-auto max-w-7xl [--stack-gap:18px] [--stick:5.25rem] sm:[--stick:6rem] md:[--stack-gap:28px] md:[--stick:8rem]"
+      >
         {PROJECTS.map((project, i) => (
           <StackCard key={project.slug} index={i} total={total} progress={scrollYProgress}>
             <ProjectCard project={project} index={i} />
@@ -59,7 +63,10 @@ function StackCard({
   const targetScale = 1 - (total - 1 - index) * 0.03;
   const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
   return (
-    <div className="sticky h-[85vh] min-h-[560px]" style={{ top: `calc(var(--stick) + ${index * 28}px)` }}>
+    <div
+      className="sticky h-[85vh] min-h-[540px]"
+      style={{ top: `calc(var(--stick) + ${index} * var(--stack-gap))` }}
+    >
       <motion.article
         style={{ scale, transformOrigin: 'top center' }}
         className={`border-2 border-ink bg-canvas p-4 shadow-[0_-20px_60px_-30px_rgba(0,0,0,0.9)] sm:p-6 md:p-8 ${radius}`}
@@ -104,7 +111,7 @@ function CardHeader({
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [topLeft, bottomLeft] = project.card.left;
-  const img = `h-full w-full object-cover object-left-top ${radius}`;
+  const img = `h-full w-full object-cover object-left-top ${imageRadius}`;
   return (
     <>
       <CardHeader
@@ -129,17 +136,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </ul>
       </div>
 
-      <div className="mt-4 flex gap-3 sm:mt-6 sm:gap-4">
-        <div className="flex w-[40%] flex-col gap-3 sm:gap-4">
-          <div className="overflow-hidden" style={{ height: 'clamp(130px, 16vw, 230px)' }}>
-            <ProjectImage project={project} name={topLeft} className={img} sizes="(min-width: 1280px) 500px, 40vw" />
-          </div>
-          <div className="overflow-hidden" style={{ height: 'clamp(160px, 22vw, 340px)' }}>
-            <ProjectImage project={project} name={bottomLeft} className={img} sizes="(min-width: 1280px) 500px, 40vw" />
-          </div>
+      {/* phones: one wide shot + two below · sm+: reference 40/60 layout */}
+      <div className="project-grid mt-4 sm:mt-6">
+        <div className={`pg-main overflow-hidden ${imageRadius}`}>
+          <ProjectImage zoomable project={project} name={project.card.right} className={img} sizes="(min-width: 1280px) 760px, (min-width: 640px) 60vw, 100vw" />
         </div>
-        <div className="w-[60%]">
-          <ProjectImage project={project} name={project.card.right} className={img} sizes="(min-width: 1280px) 760px, 60vw" />
+        <div className={`pg-a overflow-hidden ${imageRadius}`}>
+          <ProjectImage zoomable project={project} name={topLeft} className={img} sizes="(min-width: 1280px) 500px, (min-width: 640px) 40vw, 50vw" />
+        </div>
+        <div className={`pg-b overflow-hidden ${imageRadius}`}>
+          <ProjectImage zoomable project={project} name={bottomLeft} className={img} sizes="(min-width: 1280px) 500px, (min-width: 640px) 40vw, 50vw" />
         </div>
       </div>
     </>

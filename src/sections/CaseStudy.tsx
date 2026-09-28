@@ -203,6 +203,7 @@ function BrowserFrame({ project, name, compact }: { project: Project; name: stri
         )}
       </div>
       <ProjectImage
+        zoomable
         project={project}
         name={name}
         sizes={compact ? '(min-width: 1024px) 360px, 50vw' : '(min-width: 1024px) 760px, 100vw'}

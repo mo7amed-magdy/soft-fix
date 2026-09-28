@@ -2,7 +2,6 @@ import { useEffect, useState, type CSSProperties } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Check, LoaderCircle } from 'lucide-react';
 import { BrandIcon, Wordmark } from '@/components/brand/Logo';
-import { TopNav } from '@/components/layout/Navbar';
 import { PrimaryButton } from '@/components/ui/Buttons';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { Magnet } from '@/components/ui/Magnet';
@@ -12,11 +11,8 @@ export function Hero() {
     <section id="top" className="relative flex min-h-dvh flex-col overflow-x-clip">
       <HeroBackground />
 
-      <FadeIn immediate y={-20}>
-        <TopNav />
-      </FadeIn>
-
-      <h1 className="relative z-10 mt-6 px-5 sm:mt-5 sm:px-6 md:mt-6 md:px-10">
+      {/* top padding clears the fixed navbar */}
+      <h1 className="relative z-10 px-4 pt-24 sm:px-6 sm:pt-28 md:px-10 md:pt-32">
         <span className="sr-only">SoftFix — software solutions studio. Build. Fix. Scale.</span>
         <Wordmark animated fill="silver" delay={0.15} title="" className="block h-auto w-full" />
       </h1>
@@ -25,17 +21,18 @@ export function Hero() {
         immediate
         delay={0.85}
         y={10}
-        className="eyebrow relative z-10 mt-3 flex items-center justify-between px-5 sm:mt-4 sm:px-6 md:px-10"
+        className="eyebrow relative z-10 mt-3 flex items-center justify-between gap-3 px-4 max-[400px]:text-[10px] max-[400px]:tracking-[0.1em] sm:mt-4 sm:px-6 md:px-10"
       >
         <span className="whitespace-nowrap">
-          {'{/}'} Software <span className="hidden sm:inline">solutions</span> studio
+          <span className="max-[400px]:hidden">{'{/}'} </span>Software <span className="hidden sm:inline">solutions</span>{' '}
+          studio
         </span>
         <span className="hidden sm:inline">Est. 2026</span>
         <span className="whitespace-nowrap text-brand-cyan">Build · Fix · Scale</span>
       </FadeIn>
 
-      <div className="relative z-10 flex flex-1 flex-col px-5 pb-7 sm:px-6 sm:pb-8 md:px-10 md:pb-10 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-end lg:gap-8 lg:pt-10">
-        <div className="flex flex-1 items-center justify-center py-8 lg:order-2 lg:py-0">
+      <div className="relative z-10 flex flex-1 flex-col px-4 pb-7 sm:px-6 sm:pb-8 md:px-10 md:pb-10 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-end lg:gap-8 lg:pt-10">
+        <div className="flex flex-1 items-center justify-center py-10 sm:py-8 lg:order-2 lg:py-0">
           <FadeIn immediate delay={0.6} y={30} className="relative">
             <FloatingChips />
             <Magnet padding={150} strength={3}>
@@ -44,17 +41,20 @@ export function Hero() {
           </FadeIn>
         </div>
 
-        <div className="flex items-end justify-between gap-4 lg:contents">
+        {/* mobile: stacked (text, full-width CTA) · sm+: side by side · lg: grid columns */}
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-4 lg:contents">
           <FadeIn immediate delay={0.35} y={20} className="lg:order-1">
             <p
-              className="max-w-[170px] font-light uppercase leading-snug tracking-wide text-ink sm:max-w-[230px] md:max-w-[270px]"
-              style={{ fontSize: 'clamp(0.75rem, 1.35vw, 1.4rem)' }}
+              className="max-w-[300px] font-light uppercase leading-snug tracking-wide text-ink sm:max-w-[230px] md:max-w-[270px]"
+              style={{ fontSize: 'clamp(0.9rem, 1.35vw, 1.4rem)' }}
             >
               We build software that solves real business problems
             </p>
           </FadeIn>
-          <FadeIn immediate delay={0.5} y={20} className="shrink-0 lg:order-3 lg:justify-self-end">
-            <PrimaryButton href="#contact">Start a project</PrimaryButton>
+          <FadeIn immediate delay={0.5} y={20} className="w-full shrink-0 sm:w-auto lg:order-3 lg:justify-self-end">
+            <PrimaryButton href="#contact" className="w-full sm:w-auto">
+              Start a project
+            </PrimaryButton>
           </FadeIn>
         </div>
       </div>
@@ -112,14 +112,14 @@ function LaunchCard() {
   const shipped = done === STEPS.length;
 
   return (
-    <div className="w-[290px] rounded-[26px] border border-white/10 bg-surface-1/75 p-4 shadow-[0_30px_120px_-20px_rgba(0,75,246,0.6)] backdrop-blur-xl sm:w-[340px] sm:p-5 md:w-[380px] lg:w-[400px] xl:w-[440px]">
+    <div className="w-[calc(100vw-2rem)] max-w-[300px] rounded-[26px] sm:w-[340px] sm:max-w-none border border-white/10 bg-surface-1/75 p-4 shadow-[0_30px_120px_-20px_rgba(0,75,246,0.6)] backdrop-blur-xl sm:p-5 md:w-[380px] lg:w-[400px] xl:w-[440px]">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5" aria-hidden>
           <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
           <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
           <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
         </div>
-        <span className="font-mono text-[11px] text-ink-subtle">softfix / launch.log</span>
+        <span className="hidden font-mono text-[11px] text-ink-subtle min-[360px]:inline">softfix / launch.log</span>
         <span
           className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider transition-colors duration-500 ${
             shipped ? 'bg-brand-cyan/15 text-brand-cyan' : 'bg-white/5 text-ink-muted'

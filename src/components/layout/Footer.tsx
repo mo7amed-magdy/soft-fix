@@ -11,8 +11,8 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden border-t border-line bg-canvas px-5 pt-16 sm:px-8 md:px-10 md:pt-24">
-      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div className="max-w-sm">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="col-span-2 max-w-sm md:col-span-1">
           <BrandIcon className="h-12 w-12" title="SoftFix" />
           <p className="mt-6 font-display text-3xl font-medium uppercase text-white">{SITE.tagline}</p>
           <p className="mt-3 leading-relaxed text-ink-muted">{SITE.description}</p>
@@ -44,7 +44,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="col-span-2 md:col-span-1">
           <p className={heading}>Contact</p>
           <ul className="mt-5 space-y-3">
             <li>
@@ -63,7 +63,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-16 flex max-w-7xl flex-wrap items-center justify-between gap-4 border-t border-line py-6 text-sm text-ink-subtle">
+      <div className="mx-auto mt-14 flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-line py-6 text-sm text-ink-subtle md:mt-16">
         <p>
           © {SITE.year} {SITE.name}. Software solution startup.
         </p>

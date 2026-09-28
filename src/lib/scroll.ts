@@ -42,6 +42,13 @@ export function scrollToId(id: string) {
   }
 }
 
+/** Freeze / release page scrolling (menus, lightbox). */
+export function lockScroll(locked: boolean) {
+  document.documentElement.style.overflow = locked ? 'hidden' : '';
+  if (locked) lenis?.stop();
+  else lenis?.start();
+}
+
 /** Smooth-scroll so an element sits in the middle of the viewport. */
 export function scrollToElement(el: HTMLElement | null) {
   if (!el) return;

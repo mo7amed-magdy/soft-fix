@@ -83,6 +83,8 @@ components:
   statement-tile: "brand poster — solid blue / cyan / navy / white / black, Kanit Black uppercase lines, mono meta 'SoftFix / Brand identity' + 'Software solution startup · 2026', brand icon top-right"
   browser-frame: "surface-1 shell, 3 dots, host pill, screenshot inside rounded-2xl"
   chip: "mono 11px uppercase, rounded-full, white/5 fill or 1px border"
+  navbar: "fixed, centred glass pill (radius 18px, #070B14 at 40% → 80% once scrolled, 1px white/8 border, blur-xl): logo · links with a small ↗ mark top-right · white 'Start a project ›' button (radius 12px). Links inline from lg (1024px); tablet = logo + CTA + menu; phone = logo + menu"
+  lightbox: "tap any project screenshot to open it full-screen; pans sideways on phones, fits the screen on desktop"
 ---
 
 # SoftFix — design system
@@ -122,6 +124,7 @@ Everything here derives from **SoftFix Brand Identity (2026)**:
 
 | Section | Surface | Signature move |
 |---|---|---|
+| Navbar | glass pill, fixed | alpha-x style; active section gets a sliding highlight |
 | Hero | canvas + aurora beams + dot grid | wordmark letters rise, check draws, magnetic launch card ticks through steps |
 | Marquee | canvas | two scroll-linked rows: screenshots ↔ brand statement posters |
 | About | canvas | extruded icon pieces slide in from corners; char-by-char scroll reveal |
