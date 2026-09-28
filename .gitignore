@@ -1,0 +1,22 @@
+# dependencies & builds
+node_modules
+dist
+*.tsbuildinfo
+.vite
+
+# raw source material — contains unblurred private data / large files
+Assets/
+*.pdf
+REF 1.txt
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.log
+.env
+.env.*
+!.env.example
+.claude/
