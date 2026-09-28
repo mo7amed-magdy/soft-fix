@@ -1,0 +1,9 @@
+# never upload raw source material (unblurred screenshots, brand deck, notes)
+Assets/
+*.pdf
+REF 1.txt
+.claude/
+node_modules/
+dist/
+.env*
+.vercel/
